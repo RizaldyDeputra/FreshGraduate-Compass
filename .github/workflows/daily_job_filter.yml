@@ -39,4 +39,5 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          CANDIDATE_PROFILE: ${{ secrets.CANDIDATE_PROFILE }}
         run: python job_filter.py

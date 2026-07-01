@@ -75,6 +75,7 @@ Upload ke repo, lalu tambahkan secrets di Settings → Secrets and variables →
 | `GEMINI_API_KEY`     | API key dari Google AI Studio  |
 | `NOTION_TOKEN`       | Integration token              |
 | `NOTION_DATABASE_ID` | ID database (32 karakter)      |
+| `CANDIDATE_PROFILE`  | Profil kandidat (lihat bawah)  |
 
 ### 6. Setup JobStreet Email Alert
 
@@ -108,7 +109,16 @@ Format: `menit jam * * *` (UTC)
 
 ## Kustomisasi Profil
 
-Edit `CANDIDATE_PROFILE` di `job_filter.py` sesuai profil kamu. Semakin spesifik, semakin akurat filternya.
+Set `CANDIDATE_PROFILE` di `.env` (lokal) atau GitHub Secrets. Tulis profil kamu sebagai bullet points, contoh:
+
+```
+- Fresh graduate S1 Teknik Informatika, Private University
+- Skills: Python, SQL, Power BI
+- Target role: Data Analyst
+- Lokasi: Jakarta, Surabaya, Remote
+```
+
+Semakin spesifik, semakin akurat filternya.
 
 ---
 

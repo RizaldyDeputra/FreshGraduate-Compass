@@ -25,20 +25,7 @@ GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
 NOTION_DATABASE_ID = os.environ.get("NOTION_DATABASE_ID")
-
-CANDIDATE_PROFILE = """
-- Fresh graduate S1 Teknik Informatika, IPK Cum Laude, Telkom University (2026)
-- Background utama: IT Business Analyst, Data Analytics, AI/ML Operations
-- Pengalaman: Internship IT Business Analyst di Telkomsel Enterprise
-  (Power BI dashboard, business process mapping, RPA/IPA analysis, RAG PoC)
-- Skills teknis: Python, SQL, Power BI (DAX), BigQuery, Azure AI-900
-- Riset: First author paper NLP/IndoBERT — sentiment analysis social media Indonesia
-- Target role: IT Business Analyst, Data Analyst, AI Operations/Quality,
-  ERP Consultant Trainee, Product Analyst, System Analyst, Data Scientist (entry-level),
-  RPA/IPA Analyst, BI Analyst
-- Lokasi yang diterima: Jakarta, Bandung, Hybrid, Remote
-- Gaji minimum: 5 juta IDR/bulan (fleksibel untuk trainee program)
-"""
+CANDIDATE_PROFILE = os.environ.get("CANDIDATE_PROFILE", "")
 
 FILTER_PROMPT = """
 Kamu adalah AI job screener yang membantu fresh graduate menemukan lowongan yang relevan.
@@ -339,6 +326,7 @@ def validate_env() -> bool:
         "GEMINI_API_KEY": GEMINI_API_KEY,
         "NOTION_TOKEN": NOTION_TOKEN,
         "NOTION_DATABASE_ID": NOTION_DATABASE_ID,
+        "CANDIDATE_PROFILE": CANDIDATE_PROFILE,
     }
     missing = [k for k, v in required.items() if not v]
     if missing:
