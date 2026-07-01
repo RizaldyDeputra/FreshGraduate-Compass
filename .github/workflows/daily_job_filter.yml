@@ -1,0 +1,42 @@
+name: Daily JobStreet Filter
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 09.00 WIB
+
+  workflow_dispatch:
+    inputs:
+      days_back:
+        description: 'Days back to process'
+        required: false
+        default: '1'
+
+jobs:
+  run-job-filter:
+    name: Filter JobStreet Emails
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run filter
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: python job_filter.py
